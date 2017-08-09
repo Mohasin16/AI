@@ -1,34 +1,19 @@
 
-import java.io.IOException;
-import java.util.GregorianCalendar;
+package ai;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 class AI {
 
     static String address_me = "Sir";
-
-    public static void main(String args[]) throws Exception {
-        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Good Day " + address_me + " how can i help u with?");
-        AI o1 = new AI();
-        System.out.println("1.Flip a coin");
-        System.out.println("2.Roll a die");
-        System.out.println("3.Do math");
-        int ch = Integer.parseInt(br1.readLine());
-        if (ch == 1) {
-            o1.flip();
-        } else if (ch == 2) {
-            o1.roll();}
-            /*
-         else if (ch == 3) {
-            o1.calc(); */
-         else {
-            System.out.print("invalid input");
-        }
-    }
-
+    static String greet_me   = "Good Morning";
+    String time_format;
+    int time;
+    
     void flip() {
         Random toss = new Random();
         int flip = toss.nextInt(2);
@@ -44,13 +29,7 @@ class AI {
            System.out.println (die);                   
        }            
     } 
-       
-           
-
-    void calendar() {
-        GregorianCalendar gcal = new GregorianCalendar();
-        System.out.println();
-    }
+                 
 /*
     void calc() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -66,7 +45,7 @@ class AI {
             ans = v1 + v2;
         } else if (op == '-') {
             ans = v1 - v2;
-        } else if (op == '/') {
+        } else if (op=='/') {
             ans = v1 / v2;
         } else if (op == '*') {
             ans = v1 * v2;
@@ -76,6 +55,33 @@ class AI {
 
     void settings() {
 
-        address_me = "Ma'm";
+        address_me = " Ma'm ";
     }
+    
+    /*
+     * This method is used to greet the user
+     * eg are gud morning,good evening etc.
+     */
+    void greeting(){                     
+        if (time>=1&&time<12)
+            greet_me = "Good Morning";     
+        else if (time>=12&&time<=15)        
+            greet_me = "Good Afternoon"; 
+        else 
+            greet_me = "Good Evening";
+        System.out.println(greet_me+" "+address_me+" ");
+        System.out.println("What can i help u with?");
+    }
+    
+    void get_time() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd/mm/yyyy hh:mm:ss"); 
+         time_format = sdf.format(date); 
+          time = date.getHours();         
+    }
+    
+    public void disp_time(){
+        System.out.print(address_me+"here's the time & date: \n "+time_format);        
+    }
+            
 }
